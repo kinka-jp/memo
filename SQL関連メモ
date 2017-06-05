@@ -1,0 +1,141 @@
+1.Some of The Most Important SQL Commands
+•SELECT - extracts data from a database
+•UPDATE - updates data in a database
+•DELETE - deletes data from a database
+•INSERT INTO - inserts new data into a database
+•CREATE DATABASE - creates a new database
+•ALTER DATABASE - modifies a database
+•CREATE TABLE - creates a new table
+•ALTER TABLE - modifies a table
+•DROP TABLE - deletes a table
+•CREATE INDEX - creates an index (search key)
+•DROP INDEX - deletes an index 
+
+2.SQL Select Distinct Statement:
+ The "Select Distinct" statement is used to return only distinct(different) values.  
+ *Exp.1: Select Distinct Country From Customers;  
+ *Exp.2: Select Count(Distinct Country) From Customers;
+ 
+3.Conditions  
+　Where,And,Or,Not
+ 
+4.Order By Statement:  
+　The "Order By" Statement is used to sort the result-set in ascending(昇順) or descending(降順) order.　
+ *Exp.1:SELECT * FROM Customers ORDER BY Country ASC, CustomerName DESC;     
+ which one has the higher priority? From left to right.
+ 
+5.SQL Insert Into Statement:  
+The Insert into statement is userd to insert new records in a table.  
+*INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...); 
+
+6.SQL NULL Values  
+It`s not posible to test for NULL values with comparison operators, such as =,<,or <>.  
+Use to IS NULL and IS NOT NULL operators instead.
+
+7.SQL Update Statement:  
+The Update statement is used to modify the existing records in a table.  
+*Exp.1:Update table_name Set column1=value1,column2=value2,... Where condition;
+
+8.SQL Delete Statement:  
+The delete statement is used to delete existing records in a table.
+
+9.The SQL Select Top Clause:  
+The Select Top clause is used to specify(指定する) the number of records to return.  
+*Note: Not all database sytems support the Select Top clause. MySQL supports the LIMIT clause to select   
+a limited number of records, while Oracle uses ROWNUM.  
+Exp.1:   
+SQL Server / MS Access Syntax: Select Top number|percent column_name From table_name Where condition;    
+*Select Top 50 Percent *from Customers;
+  Exp.2:    
+  MySQL Syntax: 
+  Select column_name From table_name Where condition Limit number;
+  Exp.3:    
+  Oracle Syntax:
+  Select column_name From table_name Where Rownum <= number;
+  
+10.The SQL MIN(),MAX(),COUNT(),AVG(),SUM() Functions:  
+The MIN() function returns the smallest value of the selected column.   
+The MAX() function returns the largest value of the selected coumn.  
+The COUNT() function returns the numbers of rows that matches a spcified criteria(基準：标准).  
+The AVG() function returns the average value of a numeric column. 
+The SUM() function returns the total sum of a numeric column.
+
+11.SQL LIKE Operator:  
+The LIKE operator is used in a Where clause to search specified pattern in a column.  
+Wildcard(ワイルドカード：通配符):  
+*Note:
+% - The percent sign represents zero,one,or multiple characters.       
+_ - The underscore reprsents a single character.(MS Access use a question mark(?) instead of the underscore(_))
+
+12.The SQL IN Operator:  
+The IN operator allows you to sepcify multiple values in a Where clause.  The IN operator is a shorthand for multiple Or conditions.  
+*Exp.1: Select column_name From table_name Where column_name IN (values1,values2,...);          
+or:          
+Select column_name From table_name Where column_name IN (Select Statement); 
+
+13.SQL Between Operator:  
+The Between operator selects values within a given range.The values can be number,text, or dates.  
+The Between operator is inclusive(包括(ほうかつ)的な):begin and values are included.　
+*Exp.1:Select column_name From table_name Where column_name Between value1 Ann value2;
+
+14.SQL Aliases(エイリアス：别名):` 
+SQL Aliases are used to give a table, or column in a table, a temporary name.  
+*Aliases are often used to make column names more readable.  
+*An alias only exists for the duration(期間) of the query.　
+*Exp.1: Select column_name AS alias_name From table_name;          
+Or:          
+Select column_name From table_name As alias_name;
+
+15.SQL Joins(Inner Joins), Left(Outer) Joins, Right(Outer) Join,Full(Outer) Join, Self Join:  
+A Join clause is used to combine rows from two or more tables, based on a related column between them.   
+*(INNER) JOIN: Returns records that have matching values in both tables.   
+*LEFT (OUTER) JOIN: Return all records from the left table, and the matched records from the right table.   
+*RIGHT (OUTER) JOIN: Return all records from the right table, and the matched records from the left table.   
+*FULL (OUTER) JOIN: Return all records when there is a match in either left or right table.   
+*Exp.1: Select table1.column(s),table2.column(s) From table1 (Inner,Left,Right,...) Join table2 ON condition;
+
+16.SQL Union Operator:   
+The Union operator is used to combine the result-set for two or more Select statements.     
+*Each Select statement within Union must have the same number of columns.     
+*The columns must also have similar data types     
+*The columns in each Select statement must also be in the same order      
+The Union operator selects only distinct values by default. To allow duplicate(重複) values, use Union All.     
+*Note: The column names in the result-set are usually equal to the column names in the first Select statement　in the Union.
+ Exp.1: Select column_name(s) From table1 Union All Select Column_name(s) From table2;
+   
+17.SQL Group By Statement:   
+The Group By statement is often used with aggregate(集計:合计) fuctions(Count,Max,Min,Sum,Avg) to group the result-set  
+by one or more columns.     
+*Syntax: Select column_name(s) From table_name Where condition Group By column_name(s) Order By column_name(s);
+
+18.SQL Having Clause:   
+The Having clause was added to SQL becaduse the Where keyword could not be used with aggregate functions.   
+*Syntax: Select column_name(s) from table_name Where condition Group By column_name(s) Having condition Order By column_name(s);
+
+19.SQL Exists Operator:   
+The Exists operator is used to test for the existence of any record in a subquery.It returns true if the subquery returns one or
+more records.   
+*Syntax: Select column_name(s) From table_name Where Exists (Select column_name From table_name Where condition);
+
+20.SQL Any and All Operators:   
+The Any and All operators are used with a Where or Having clause.   
+The Any operator returns true if any of the subquery values meet the condition.   
+The All operator returns true if all of the subquery values meet the condition.
+
+*Syntax: Select column_name(s) From table_name Where column_name Operator(=,<>,>,..) Any/All 
+(Select column_name From table_name Where condition);
+
+21.Select Into Statement:   
+The Select Into statement copies data from one table into a new table.   
+Syntax:Select *Into newtable[IN externaldb] From oldtable Where condition;          
+Or:          
+Select column1,column2,... Into newtable[IN external(外部)db] From oldtable Where condition;
+
+22.The SQL Insert Into Select Statement:   
+The Insert Into Select statement copies data from one table and inserts it into another table.   
+*Insert Into Select requires that data types in source and target tables match.    
+*The existing records in the target table are unaffected.   Syntax: Insert Into table2 Select *from table1 Where condition;
+
+23.SQL Comments:  Single line comments start with --.   Multi-line comments start with /* and end with  */.
+
+ 
